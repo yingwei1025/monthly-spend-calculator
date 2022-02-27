@@ -8,3 +8,6 @@ If your monthly fixed payment is at least 80% in your total monthly expense, the
 Good job ! Keep it up 
 
 If not, then you have to control your monthly expense on those unnecessary things.
+
+# 浏览 
+https://yingwei1025.github.io/monthly-spend-calculator/
