@@ -1,0 +1,104 @@
+<!-- Develop by Yw Chua 2022  -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>乱花钱 计算器</title>
+  </head>
+  <style>
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      background-color: #e8e8e8;
+      align-items: center;
+      margin: 1% 5% 1% 5%;
+    }
+
+    .flex-container>div {
+      padding-bottom: 10px;
+      padding-top: 7px;
+    }
+
+    .text-danger {
+      color: #dc3545 !important;
+    }
+
+    .text-primary {
+      color: #007bff !important;
+    }
+
+    .text-success {
+      color: #28a745 !important;
+    }
+
+    .shadow-lg {
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+    }
+
+    .bg-light {
+      background-color: #f8f9fa !important;
+    }
+
+    .text-center {
+      text-align: center !important;
+    }
+
+    .input-div span {
+      position: absolute;
+      margin-left: 1px;
+      margin-top: 1px;
+    }
+
+    .input-div input {
+      padding-left: 10px;
+    }
+  </style>
+  <body>
+    <form class="shadow-lg p-4 mb-4 bg-light flex-container" name="calForm">
+      <br />
+      <h3 class="text-center">乱花钱 计算器</h3>
+      <div class="input-div"> 必要的固定支出 <br />
+        <span>$</span>
+        <input type="number" id="fixPay" onkeyup="checkVal()">
+      </div>
+      <div class="input-div"> 月总支出 <br />
+        <span>$</span>
+        <input type="number" id="tolPay" onkeyup="checkVal()">
+      </div>
+      <div> 检测百分比 (%) <br />
+        <input type="number" id="varPercent" value="80" min="0" max="100" style="width: 168px;" maxlength="3" onkeyup="checkVal()" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+      </div>
+      <div class="text-success" id="good" style="display:none;">
+        <strong>恭喜你！你没有乱花钱 ！</strong>
+      </div>
+      <div class="text-danger" id="bad" style="display:none;">
+        <strong>乱花钱了！ 要努力克制自己哦！</strong>
+      </div>
+      <br />
+    </form>
+    <script>
+      function checkVal() {
+        var v1 = parseInt(document.getElementById("fixPay").value);
+        var v2 = parseInt(document.getElementById("tolPay").value);
+        var v3 = parseInt(document.getElementById("varPercent").value);
+        var good = document.getElementById("good");
+        var bad = document.getElementById("bad");
+        var result;
+        if (v1 != "" && v2 != "" && v3 != "" && v1 <= v2) {
+          result = (v1 / v2) * 100;
+          console.log(result)
+          // bigger val is good
+          if (result > v3 && result != Infinity) {
+            good.style.display = "block";
+            bad.style.display = "none";
+          } else {
+            good.style.display = "none";
+            bad.style.display = "block";
+          }
+        } else {
+          good.style.display = "none";
+          bad.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
