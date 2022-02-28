@@ -68,10 +68,10 @@
         <input type="number" id="varPercent" value="80" min="0" max="100" style="width: 168px;" maxlength="3" onkeyup="checkVal()" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
       </div>
       <div class="text-success" id="good" style="display:none;">
-        <strong>恭喜你！你没有乱花钱 ！</strong>
+        <strong>恭喜你！你没有乱花钱 ！ <span id="result"></span></strong>
       </div>
       <div class="text-danger" id="bad" style="display:none;">
-        <strong>乱花钱了！ 要努力克制自己哦！</strong>
+        <strong>乱花钱了！ 要努力克制自己哦！ <span id="result2"></span></strong>
       </div>
       <br />
     </form>
@@ -83,21 +83,26 @@
         var good = document.getElementById("good");
         var bad = document.getElementById("bad");
         var result;
+        var holder;
         if (v1 != "" && v2 != "" && v3 != "" && v1 <= v2) {
           result = (v1 / v2) * 100;
-          console.log(result)
+          holder = '('+Number(result).toFixed(1) +'%)';
+          
           // bigger val is good
           if (result > v3 && result != Infinity) {
             good.style.display = "block";
             bad.style.display = "none";
+            document.getElementById("result").innerHTML = holder;
           } else {
             good.style.display = "none";
             bad.style.display = "block";
+            document.getElementById("result2").innerHTML = holder;
           }
         } else {
           good.style.display = "none";
           bad.style.display = "none";
         }
+        
       }
     </script>
   </body>
